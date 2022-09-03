@@ -3,7 +3,7 @@
     class Database
     {
         private $host = "localhost";
-        private $db_name = "db_product";
+        private $db_name = "webjump";
         private $username = "root";
         private $password = "TR4vcijU6T9Keaw";
         private $conn;

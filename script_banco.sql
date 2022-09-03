@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29-Jun-2020 às 13:49
--- Versão do servidor: 10.4.13-MariaDB
--- versão do PHP: 7.4.7
+-- Generation Time: 03-Set-2022 às 18:45
+-- Versão do servidor: 10.1.30-MariaDB
+-- PHP Version: 7.1.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,53 +19,67 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `db_product`
+-- Database: `webjump`
 --
-CREATE DATABASE IF NOT EXISTS `db_product` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `db_product`;
+CREATE DATABASE IF NOT EXISTS `webjump` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `webjump`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbproduct`
+-- Estrutura da tabela `categoria`
 --
 
-CREATE TABLE `tbproduct` (
+CREATE TABLE `categoria` (
+  `id` int(16) NOT NULL,
+  `codigo` int(128) NOT NULL,
+  `name` int(96) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produtos`
+--
+
+CREATE TABLE `produtos` (
   `id` int(11) NOT NULL,
   `name` varchar(120) NOT NULL,
   `price` double DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL
+  `code` int(128) DEFAULT NULL,
+  `quantidade` int(128) DEFAULT NULL,
+  `categorias` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `tbproduct`
+-- Extraindo dados da tabela `produtos`
 --
 
-INSERT INTO `tbproduct` (`id`, `name`, `price`, `description`, `image`) VALUES
-(1, 'Mouse', 29.9, 'Mouse', NULL),
-(2, 'Teclado PC', 299.9, 'Teclado Mecânico.', NULL),
-(3, 'PC Gamer', 4599.9, 'PC Gamer ultima geração.', NULL);
+INSERT INTO `produtos` (`id`, `name`, `price`, `description`, `code`, `quantidade`, `categorias`) VALUES
+(1, 'Mouse', 29.9, 'Mouse', NULL, NULL, NULL),
+(2, 'Teclado PC', 299.9, 'Teclado Mecânico.', NULL, NULL, NULL),
+(3, 'PC Gamer', 4599.9, 'PC Gamer ultima geração.', NULL, NULL, NULL);
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices para tabela `tbproduct`
+-- Indexes for table `categoria`
 --
-ALTER TABLE `tbproduct`
+ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `tbproduct`
+-- AUTO_INCREMENT for table `categoria`
 --
-ALTER TABLE `tbproduct`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `categoria`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

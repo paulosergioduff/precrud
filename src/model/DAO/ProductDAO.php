@@ -4,7 +4,7 @@
 
     class ProductDAO
     {
-        private $table = "tbproduct";
+        private $table = "produtos";
         private $database;
         private $conn;
 
