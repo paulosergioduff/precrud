@@ -7,6 +7,8 @@
         private $price;
         private $description;
         private $image;
+        private $quantidade;
+        private $codigo;
 
         public function __construct() {
         }
@@ -49,6 +51,23 @@
     
         public function setImage($image) {
             $this->image = $image;
+        }
+
+        public function getQuantidade() {
+            return $this->quantidade;
+        }
+    
+        public function setQuantidade($quantidade) {
+            $this->quantidade = $quantidade;
+        }
+
+
+        public function getCodigo() {
+            return $this->codigo;
+        }
+    
+        public function setCodigo($codigo) {
+            $this->codigo = $codigo;
         }
     }    
 ?>

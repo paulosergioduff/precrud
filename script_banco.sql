@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Set-2022 às 18:45
+-- Generation Time: 04-Set-2022 às 20:47
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.1.13
 
@@ -19,56 +19,43 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `webjump`
+-- Database: `db_product`
 --
-CREATE DATABASE IF NOT EXISTS `webjump` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `webjump`;
+CREATE DATABASE IF NOT EXISTS `db_product` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `db_product`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categoria`
+-- Estrutura da tabela `tbproduct`
 --
 
-CREATE TABLE `categoria` (
-  `id` int(16) NOT NULL,
-  `codigo` int(128) NOT NULL,
-  `name` int(96) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `produtos`
---
-
-CREATE TABLE `produtos` (
+CREATE TABLE `tbproduct` (
   `id` int(11) NOT NULL,
   `name` varchar(120) NOT NULL,
   `price` double DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `code` int(128) DEFAULT NULL,
-  `quantidade` int(128) DEFAULT NULL,
-  `categorias` varchar(255) DEFAULT NULL
+  `image` varchar(255) DEFAULT NULL,
+  `quantidade` int(64) DEFAULT NULL,
+  `codigo` int(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `produtos`
+-- Extraindo dados da tabela `tbproduct`
 --
 
-INSERT INTO `produtos` (`id`, `name`, `price`, `description`, `code`, `quantidade`, `categorias`) VALUES
-(1, 'Mouse', 29.9, 'Mouse', NULL, NULL, NULL),
-(2, 'Teclado PC', 299.9, 'Teclado Mecânico.', NULL, NULL, NULL),
-(3, 'PC Gamer', 4599.9, 'PC Gamer ultima geração.', NULL, NULL, NULL);
+INSERT INTO `tbproduct` (`id`, `name`, `price`, `description`, `image`, `quantidade`, `codigo`) VALUES
+(18, 'novo comando', 122, 'gsfgsggd', '11', 1, NULL),
+(19, 'First', 99, 'sdfggdgsg', '11', 1, 2147483647);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `categoria`
+-- Indexes for table `tbproduct`
 --
-ALTER TABLE `categoria`
+ALTER TABLE `tbproduct`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -76,10 +63,10 @@ ALTER TABLE `categoria`
 --
 
 --
--- AUTO_INCREMENT for table `categoria`
+-- AUTO_INCREMENT for table `tbproduct`
 --
-ALTER TABLE `categoria`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbproduct`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -22,6 +22,9 @@
                         "name" => $name,
                         "price" => $price,
                         "description" => $description,
+                        "quantidade" => $quantidade,
+                        "image" => $image,
+                        "codigo" => $codigo,
                     );
 
                     array_push($product_arr, $product_item);
@@ -35,25 +38,20 @@
             ProductHelper::formProduct();
             $product = new Product();
 
-            if(isset($_POST['name'], $_POST['price'],$_POST['description'])) {
+            if(isset($_POST['name'], $_POST['price'],$_POST['description'],$_POST['image'],$_POST['quantidade'])) {
                 $product->setName($_POST['name']);
                 $product->setPrice($_POST['price']);
                 $product->setDescription($_POST['description']);
-                
-                $typeFile = strtolower(substr($_FILES['image']['name'], -4));
-                $fileName = md5(time()).$typeFile;
-                $filePath = '/opt/lampp/htdocs/www/php-crud/src/assets/img/';
-
-                move_uploaded_file($_FILES['image']['tmp_name'], $filePath.$fileName);
-
-                $product->setImage($fileName);
+                $product->setQuantidade($_POST['quantidade']);
+                $product->setImage($_POST['image']);
+                $product->setCodigo($_POST['codigo']);
 
                 if(!empty($product->getName())) {
                     $productDAO = new ProductDAO();
                     $stmt = $productDAO->insert($product);
 
                     if($stmt) {
-                        header("Location: ?page=product&method=index");
+                       header("Location: ?page=product&method=index");
                     }
                 } else {
                     echo "Informe os dados.";
@@ -65,10 +63,13 @@
             $product = new Product();
             $product->setId($_GET['id']);
 
-            if(isset($_POST['name'], $_POST['price'],$_POST['description'])) {
+            if(isset($_POST['name'], $_POST['price'],$_POST['description'],$_POST['quantidade'])) {
                 $product->setName($_POST['name']);
                 $product->setPrice($_POST['price']);
                 $product->setDescription($_POST['description']);
+                $product->setQuantidade($_POST['quantidade']);
+                $product->setQuantidade($_POST['image']);
+                $product->setCodigo($_POST['codigo']);
                 
                 $productDAO = new ProductDAO();
                 $stmt = $productDAO->update($product);
@@ -92,7 +93,8 @@
                 $product->setId($row['id']);
                 $product->setName($row['name']);
                 $product->setPrice($row['price']);
-                $product->setDescription($row['description']);               
+                $product->setDescription($row['description']);
+                $product->setQuantidade($row['quantidade']);               
     
                 ProductHelper::showDetails($product);
             } 
