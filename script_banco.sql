@@ -35,7 +35,7 @@ CREATE TABLE `tbproduct` (
   `name` varchar(120) NOT NULL,
   `price` double DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `categoria` varchar(255) DEFAULT NULL,
   `quantidade` int(64) DEFAULT NULL,
   `codigo` int(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -44,7 +44,7 @@ CREATE TABLE `tbproduct` (
 -- Extraindo dados da tabela `tbproduct`
 --
 
-INSERT INTO `tbproduct` (`id`, `name`, `price`, `description`, `image`, `quantidade`, `codigo`) VALUES
+INSERT INTO `tbproduct` (`id`, `name`, `price`, `description`, `categoria`, `quantidade`, `codigo`) VALUES
 (18, 'novo comando', 122, 'gsfgsggd', '11', 1, NULL),
 (19, 'First', 99, 'sdfggdgsg', '11', 1, 2147483647);
 

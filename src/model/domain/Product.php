@@ -6,7 +6,7 @@
         private $name;
         private $price;
         private $description;
-        private $image;
+        private $categoria;
         private $quantidade;
         private $codigo;
 
@@ -45,12 +45,12 @@
             $this->description = $description;
         }
 
-        public function getImage() {
-            return $this->image;
+        public function getCategoria() {
+            return $this->categoria;
         }
     
-        public function setImage($image) {
-            $this->image = $image;
+        public function setCategoria($categoria) {
+            $this->categoria = $categoria;
         }
 
         public function getQuantidade() {

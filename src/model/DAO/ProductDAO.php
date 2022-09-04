@@ -15,7 +15,7 @@
 
         public function getAll() {
             $query = "SELECT
-                    id, name, price, description, image, quantidade, codigo
+                    id, name, price, description, categoria, quantidade, codigo
                 FROM
                     " . $this->table . "
                 ORDER BY id";
@@ -28,7 +28,7 @@
 
         public function getId($product) {
             $query = "SELECT
-                    id, name, price, description, image, quantidade, codigo
+                    id, name, price, description, categoria, quantidade, codigo
                 FROM
                     " . $this->table . "
                 WHERE id = :id";
@@ -43,7 +43,7 @@
              $query = "INSERT INTO
                     " . $this->table . "
                 SET
-                name=:name,price=:price,description=:description,image=:image,quantidade=:quantidade,codigo=:codigo";
+                name=:name,price=:price,description=:description,categoria=:categoria,quantidade=:quantidade,codigo=:codigo";
 
             $stmt = $this->conn->prepare($query);
 
@@ -51,7 +51,7 @@
             $product->setName(htmlspecialchars(strip_tags($product->getName())));
             $product->setPrice(htmlspecialchars(strip_tags($product->getPrice())));
             $product->setDescription(htmlspecialchars(strip_tags($product->getDescription())));
-            $product->setImage(htmlspecialchars(strip_tags($product->getImage())));
+            $product->setCategoria(htmlspecialchars(strip_tags($product->getCategoria())));
             $product->setQuantidade(htmlspecialchars(strip_tags($product->getQuantidade())));
             $product->setCodigo(htmlspecialchars(strip_tags($product->getCodigo())));
 
@@ -59,7 +59,7 @@
             $stmt->bindValue(":name", $product->getName());
             $stmt->bindValue(":price", $product->getPrice());
             $stmt->bindValue(":description", $product->getDescription());
-            $stmt->bindValue(":image", $product->getImage());
+            $stmt->bindValue(":categoria", $product->getCategoria());
             $stmt->bindValue(":quantidade", $product->getQuantidade());
             $stmt->bindValue(":codigo", $product->getCodigo());
             

@@ -23,7 +23,7 @@
                         "price" => $price,
                         "description" => $description,
                         "quantidade" => $quantidade,
-                        "image" => $image,
+                        "categoria" => $categoria,
                         "codigo" => $codigo,
                     );
 
@@ -38,12 +38,12 @@
             ProductHelper::formProduct();
             $product = new Product();
 
-            if(isset($_POST['name'], $_POST['price'],$_POST['description'],$_POST['image'],$_POST['quantidade'])) {
+            if(isset($_POST['name'], $_POST['price'],$_POST['description'],$_POST['categoria'],$_POST['quantidade'])) {
                 $product->setName($_POST['name']);
                 $product->setPrice($_POST['price']);
                 $product->setDescription($_POST['description']);
                 $product->setQuantidade($_POST['quantidade']);
-                $product->setImage($_POST['image']);
+                $product->setCategoria($_POST['categoria']);
                 $product->setCodigo($_POST['codigo']);
 
                 if(!empty($product->getName())) {
@@ -68,7 +68,7 @@
                 $product->setPrice($_POST['price']);
                 $product->setDescription($_POST['description']);
                 $product->setQuantidade($_POST['quantidade']);
-                $product->setQuantidade($_POST['image']);
+                $product->setQuantidade($_POST['categoria']);
                 $product->setCodigo($_POST['codigo']);
                 
                 $productDAO = new ProductDAO();
