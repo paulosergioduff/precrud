@@ -1,0 +1,33 @@
+<div>
+    <form action="?page=product&method=add" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input class="form-control" id="name" name="name" type="text" placeholder="Nome">
+        </div>
+        <div class="form-group">
+            <label for="price">Preço</label>
+            <input class="form-control" id="price" name="price" type="number" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" placeholder="Preço">
+        </div>
+        <div class="form-group">
+            <label for="description">Descrição</label>
+            <input class="form-control" id="description" name="description" type="text" placeholder="Descrição">
+        </div>
+        <div class="form-group">
+            <label for="categoria">categoria</label>
+            <input class="form-control" id="categoria" name="categoria" type="text" placeholder="categoria" >
+        </div>
+        
+        <div class="form-group">
+            <label for="quantidade">Quantidade</label>
+            <input class="form-control" id="quantidade" name="quantidade" type="text" placeholder="Quantidade" >
+        </div>
+
+        <div class="form-group">
+            <label for="codigo">Código SKU</label>
+            <input class="form-control" id="codigo" name="codigo" type="text" placeholder="Código de barras" >
+        </div>
+            <br/>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <a href="?page=product" type="button" role="button">Voltar</a>
+    </form>
+</div>
