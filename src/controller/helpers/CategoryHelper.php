@@ -2,42 +2,42 @@
 
     class CategoryHelper
     {
-        public static function showCategorys($products) {
+        public static function showCategorys($categorys) {
             $tbody = "";
 
-            foreach ($products as $product) {
+            foreach ($categorys as $category) {
                 $tbody .= 
                 "<tr>
-                    <td>$product[id]</td>
-                    <td>$product[name]</td>
-                    <td>$product[price]</td>
-                    <td>$product[description]</td>
+                    <td>$category[id]</td>
+                    <td>$category[name]</td>
+                    <td>$category[price]</td>
+                    <td>$category[description]</td>
                     <td>
-                        <a class='btn btn-info' href='?page=product&method=details&id=$product[id]'>Detalhes</a>
-                        <a class='btn btn-danger' href='?page=product&method=delete&id=$product[id]'>Excluir</a>
+                        <a class='btn btn-info' href='?page=category&method=details&id=$category[id]'>Detalhes</a>
+                        <a class='btn btn-danger' href='?page=category&method=delete&id=$category[id]'>Excluir</a>
                     </td>
                 </tr>"; 
             }
 
-            $productView = file_get_contents('src/view/listaCategoria.html');
-            $productView = str_replace('{{body}}', $tbody, $productView);
+            $categoryView = file_get_contents('src/view/listaCategoria.html');
+            $categoryView = str_replace('{{body}}', $tbody, $categoryView);
 
-            echo $productView;
+            echo $categoryView;
         }
 
         public static function formCategory() {
-            $productView = file_get_contents('src/view/formCategoria.html');
-            echo $productView;
+            $categoryView = file_get_contents('src/view/formCategoria.html');
+            echo $categoryView;
         }
 
-        public static function showDetails($product) {
-            $id = $product->getId();
-            $name = $product->getName();
-            $price = $product->getPrice();
-            $description = $product->getDescription();
+        public static function showDetails($category) {
+            $id = $category->getId();
+            $name = $category->getName();
+            $price = $category->getPrice();
+            $description = $category->getDescription();
 
             $form = "
-                <form action='?page=product&method=update&id=$id' method='post'>
+                <form action='?page=category&method=update&id=$id' method='post'>
                 <div class='form-group'>
                     <label for='name'>Nome</label>
                     <input class='form-control' id='name' name='name' type='text' value='$name'>
@@ -52,7 +52,7 @@
                 </div>
                 <br/>                
                 <button type='submit' class='btn btn-success'>Salvar</button> 
-                <a href='?page=product' type='button' role='button'>Voltar</a>              
+                <a href='?page=category' type='button' role='button'>Voltar</a>              
                 </form>
                 
             ";
