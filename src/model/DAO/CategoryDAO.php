@@ -4,7 +4,7 @@
 
     class CategoryDAO
     {
-        private $table = "tbproduct";
+        private $table = "categoria";
         private $database;
         private $conn;
 
