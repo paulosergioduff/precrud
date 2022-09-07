@@ -7,7 +7,7 @@
             if(isset($urlGet['page'])) {
                 $controller = ucfirst($urlGet['page'].'Controller');
             } else {
-                $controller = 'ProductController';
+                $controller = 'CategoryController';
             }
 
             if(isset($urlGet['method'])) {

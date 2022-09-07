@@ -2,7 +2,7 @@
     
     require_once 'src/config/connection/Database.php';
 
-    class ProductDAO
+    class CategoryDAO
     {
         private $table = "tbproduct";
         private $database;

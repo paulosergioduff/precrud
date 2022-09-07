@@ -1,8 +1,8 @@
 <?php
 
-    class ProductHelper
+    class CategoryHelper
     {
-        public static function showProducts($products) {
+        public static function showCategorys($products) {
             $tbody = "";
 
             foreach ($products as $product) {
@@ -25,7 +25,7 @@
             echo $productView;
         }
 
-        public static function formProduct() {
+        public static function formCategory() {
             $productView = file_get_contents('src/view/formCategoria.html');
             echo $productView;
         }
