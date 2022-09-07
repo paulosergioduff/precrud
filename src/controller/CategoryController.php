@@ -20,10 +20,6 @@
                     $category_item = array(
                         "id" => $id,
                         "name" => $name,
-                        "price" => $price,
-                        "description" => $description,
-                        "quantidade" => $quantidade,
-                        "categoria" => $categoria,
                         "codigo" => $codigo,
                     );
 
@@ -38,12 +34,8 @@
             CategoryHelper::formCategory();
             $category = new Category();
 
-            if(isset($_POST['name'], $_POST['price'],$_POST['description'],$_POST['categoria'],$_POST['quantidade'])) {
+            if(isset($_POST['name'], $_POST['codigo'])) {
                 $category->setName($_POST['name']);
-                $category->setPrice($_POST['price']);
-                $category->setDescription($_POST['description']);
-                $category->setQuantidade($_POST['quantidade']);
-                $category->setCategoria($_POST['categoria']);
                 $category->setCodigo($_POST['codigo']);
 
                 if(!empty($category->getName())) {
@@ -63,12 +55,8 @@
             $category = new Category();
             $category->setId($_GET['id']);
 
-            if(isset($_POST['name'], $_POST['price'],$_POST['description'],$_POST['quantidade'])) {
+            if(isset($_POST['name'], $_POST['codigo'])) {
                 $category->setName($_POST['name']);
-                $category->setPrice($_POST['price']);
-                $category->setDescription($_POST['description']);
-                $category->setQuantidade($_POST['quantidade']);
-                $category->setQuantidade($_POST['categoria']);
                 $category->setCodigo($_POST['codigo']);
                 
                 $categoryDAO = new CategoryDAO();
@@ -92,9 +80,7 @@
             if(isset($row['id'])) {
                 $category->setId($row['id']);
                 $category->setName($row['name']);
-                $category->setPrice($row['price']);
-                $category->setDescription($row['description']);
-                $category->setQuantidade($row['quantidade']);               
+                $category->setCodigo($row['codigo']);               
     
                 CategoryHelper::showDetails($category);
             } 
