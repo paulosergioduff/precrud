@@ -19,14 +19,14 @@
                 </tr>"; 
             }
 
-            $productView = file_get_contents('src/view/product.html');
+            $productView = file_get_contents('src/view/listaCategoria.html');
             $productView = str_replace('{{body}}', $tbody, $productView);
 
             echo $productView;
         }
 
         public static function formProduct() {
-            $productView = file_get_contents('src/view/form.html');
+            $productView = file_get_contents('src/view/formCategoria.html');
             echo $productView;
         }
 

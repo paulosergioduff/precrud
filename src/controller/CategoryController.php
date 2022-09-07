@@ -1,8 +1,8 @@
 <?php
 
-    require_once 'src/model/DAO/ProductDAO.php';
-    require_once 'src/model/domain/Product.php';
-    require_once 'src/controller/helpers/ProductHelper.php';
+    require_once 'src/model/DAO/CategoryDAO.php';
+    require_once 'src/model/domain/Category.php';
+    require_once 'src/controller/helpers/CategoryHelper.php';
 
     class ProductController 
     {
