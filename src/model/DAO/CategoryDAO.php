@@ -26,7 +26,7 @@
             return $stmt;
         }
 
-        public function getId($product) {
+        public function getId($category) {
             $query = "SELECT
                     id, name, codigo
                 FROM
@@ -34,12 +34,12 @@
                 WHERE id = :id";
             
             $stmt = $this->conn->prepare($query);
-            $stmt->bindValue(":id", $product->getId());
+            $stmt->bindValue(":id", $category->getId());
             $stmt->execute();
             return $stmt;            
         }
 
-        public function insert($product) {
+        public function insert($category) {
              $query = "INSERT INTO
                     " . $this->table . "
                 SET
@@ -48,12 +48,12 @@
             $stmt = $this->conn->prepare($query);
 
             // Evita encode não reconhecido pelo html(<, &, ect)
-            $product->setName(htmlspecialchars(strip_tags($product->getName())));
-            $product->setCodigo(htmlspecialchars(strip_tags($product->getCodigo())));
+            $category->setName(htmlspecialchars(strip_tags($category->getName())));
+            $category->setCodigo(htmlspecialchars(strip_tags($category->getCodigo())));
 
             // bind de valores
-            $stmt->bindValue(":name", $product->getName());
-            $stmt->bindValue(":codigo", $product->getCodigo());
+            $stmt->bindValue(":name", $category->getName());
+            $stmt->bindValue(":codigo", $category->getCodigo());
             
 
             if($stmt->execute()){
@@ -64,7 +64,7 @@
         }
 
 
-        public function update($product) {
+        public function update($category) {
             $query = "UPDATE
             " . $this->table . "
             SET
@@ -75,15 +75,15 @@
             $stmt = $this->conn->prepare($query);
 
             // Evita encode não reconhecido pelo html(<, &, ect)
-            $product->setId(htmlspecialchars(strip_tags($product->getId())));
-            $product->setName(htmlspecialchars(strip_tags($product->getName())));
-            $product->setCodigo(htmlspecialchars(strip_tags($product->getCodigo())));
+            $category->setId(htmlspecialchars(strip_tags($category->getId())));
+            $category->setName(htmlspecialchars(strip_tags($category->getName())));
+            $category->setCodigo(htmlspecialchars(strip_tags($category->getCodigo())));
 
 
             // bind de valores
-            $stmt->bindValue(":id", $product->getId());
-            $stmt->bindValue(":name", $product->getName());
-            $stmt->bindValue(":codigo", $product->getCodigo());
+            $stmt->bindValue(":id", $category->getId());
+            $stmt->bindValue(":name", $category->getName());
+            $stmt->bindValue(":codigo", $category->getCodigo());
 
             if($stmt->execute()){
                 return true;
@@ -92,13 +92,13 @@
             return false;
         }
 
-        public function delete($product) {
+        public function delete($category) {
             $query = "DELETE FROM " . $this->table . " WHERE id = :id";
 
             $stmt = $this->conn->prepare($query);
 
-            $product->setId(htmlspecialchars(strip_tags($product->getId())));
-            $stmt->bindValue(":id", $product->getId());
+            $category->setId(htmlspecialchars(strip_tags($category->getId())));
+            $stmt->bindValue(":id", $category->getId());
 
             if($stmt->execute()){
                 return true;
