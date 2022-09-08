@@ -42,7 +42,7 @@
                 </div>
                 <div class='form-group'>
                     <label for='codigo'>Código</label>
-                    <input class='form-control' id='codigo' name='codigo' type='number' pattern='[0-9]+([,\.][0-9]+)?' min='0' step='any' value='$codigo'>
+                    <input class='form-control' id='codigo' name='codigo' value='$codigo'>
                 </div>
                 <br/>                
                 <button type='submit' class='btn btn-success'>Salvar</button> 
