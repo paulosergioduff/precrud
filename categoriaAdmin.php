@@ -1,5 +1,5 @@
 <?php
-    require_once 'src/controller/HomeCategoryController.php';
+    require_once 'src/controller/HomeController.php';
     require_once 'src/controller/CategoryController.php';
     require_once 'src/controller/ErroController.php';
 
