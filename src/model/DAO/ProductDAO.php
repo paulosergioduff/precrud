@@ -76,7 +76,7 @@
             $query = "UPDATE
             " . $this->table . "
             SET
-                name=:name,price=:price,description=:description,quantidade=:quantidade
+                name=:name,price=:price,description=:description,categoria=:categoria,quantidade=:quantidade,codigo=:codigo
             WHERE
                 id = :id";
 
@@ -87,14 +87,18 @@
             $product->setName(htmlspecialchars(strip_tags($product->getName())));
             $product->setPrice(htmlspecialchars(strip_tags($product->getPrice())));
             $product->setDescription(htmlspecialchars(strip_tags($product->getDescription())));
+            $product->setCategoria(htmlspecialchars(strip_tags($product->getCategoria())));
             $product->setQuantidade(htmlspecialchars(strip_tags($product->getQuantidade())));
+            $product->setCodigo(htmlspecialchars(strip_tags($product->getCodigo())));
 
             // bind de valores
             $stmt->bindValue(":id", $product->getId());
             $stmt->bindValue(":name", $product->getName());
             $stmt->bindValue(":price", $product->getPrice());
             $stmt->bindValue(":description", $product->getDescription());
+            $stmt->bindValue(":categoria", $product->getCategoria());
             $stmt->bindValue(":quantidade", $product->getQuantidade());
+            $stmt->bindValue(":codigo", $product->getCodigo());
 
             if($stmt->execute()){
                 return true;

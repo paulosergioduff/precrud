@@ -68,7 +68,7 @@
                 $product->setPrice($_POST['price']);
                 $product->setDescription($_POST['description']);
                 $product->setQuantidade($_POST['quantidade']);
-                $product->setQuantidade($_POST['categoria']);
+                $product->setCategoria($_POST['categoria']);
                 $product->setCodigo($_POST['codigo']);
                 
                 $productDAO = new ProductDAO();
@@ -94,7 +94,9 @@
                 $product->setName($row['name']);
                 $product->setPrice($row['price']);
                 $product->setDescription($row['description']);
-                $product->setQuantidade($row['quantidade']);               
+                $product->setQuantidade($row['quantidade']);
+                $product->setCategoria($row['categoria']);
+                $product->setCodigo($row['codigo']);               
     
                 ProductHelper::showDetails($product);
             } 
