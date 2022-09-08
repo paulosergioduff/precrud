@@ -1,49 +1,57 @@
 <?php
 
-    require_once 'src/model/DAO/CategoryDAO.php';
-    require_once 'src/model/domain/Category.php';
-    require_once 'src/controller/helpers/CategoryHelper.php';
+    require_once 'src/model/DAO/ProductDAO.php';
+    require_once 'src/model/domain/Product.php';
+    require_once 'src/controller/helpers/ProductHelper.php';
 
-    class CategoryController 
+    class ProductController 
     {
         public function index() {
            
-            $categoryDAO = new CategoryDAO();
-            $stmt = $categoryDAO->getAll();
+            $productDAO = new ProductDAO();
+            $stmt = $productDAO->getAll();
             $result = $stmt->rowCount();
-            $category_arr = array();
+            $product_arr = array();
 
             if($result > 0) {             
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     extract($row);
 
-                    $category_item = array(
+                    $product_item = array(
                         "id" => $id,
                         "name" => $name,
+                        "price" => $price,
+                        "description" => $description,
+                        "quantidade" => $quantidade,
+                        "categoria" => $categoria,
                         "codigo" => $codigo,
                     );
 
-                    array_push($category_arr, $category_item);
+                    array_push($product_arr, $product_item);
                 }
             }
 
-            CategoryHelper::showCategorys($category_arr);
+            ProductHelper::showProducts($product_arr);
         }
 
         public function add() {
-            CategoryHelper::formCategory();
-            $category = new Category();
+            ProductHelper::formProduct();
+            $product = new Product();
 
-            if(isset($_POST['name'], $_POST['codigo'])) {
-                $category->setName($_POST['name']);
-                $category->setCodigo($_POST['codigo']);
+            if(isset($_POST['name'], $_POST['price'],$_POST['description'],$_POST['categoria'],$_POST['quantidade'])) {
+                $product->setName($_POST['name']);
+                $product->setPrice($_POST['price']);
+                $product->setDescription($_POST['description']);
+                $product->setQuantidade($_POST['quantidade']);
+                $product->setCategoria($_POST['categoria']);
+                $product->setCodigo($_POST['codigo']);
 
-                if(!empty($category->getName())) {
-                    $categoryDAO = new CategoryDAO();
-                    $stmt = $categoryDAO->insert($category);
+                if(!empty($product->getName())) {
+                    $productDAO = new ProductDAO();
+                    $stmt = $productDAO->insert($product);
 
                     if($stmt) {
-                       header("Location: ?page=category&method=index");
+                       header("Location: ?page=product&method=index");
                     }
                 } else {
                     echo "Informe os dados.";
@@ -52,8 +60,8 @@
         }
 
         public function update() {            
-            $category = new Category();
-            $category->setId($_GET['id']);
+            $product = new Product();
+            $product->setId($_GET['id']);
 
             if(isset($_POST['name'], $_POST['price'],$_POST['description'],$_POST['quantidade'])) {
                 $product->setName($_POST['name']);
@@ -63,21 +71,21 @@
                 $product->setCategoria($_POST['categoria']);
                 $product->setCodigo($_POST['codigo']);
                 
-                $categoryDAO = new CategoryDAO();
-                $stmt = $categoryDAO->update($category);
+                $productDAO = new ProductDAO();
+                $stmt = $productDAO->update($product);
 
                 if($stmt) {
-                    header("Location: ?page=category&method=index");
+                    header("Location: ?page=product&method=index");
                 }
             }
         }
 
         public function details() {
-            $category = new Category();
-            $categoryDAO = new CategoryDAO();
-            $category->setId($_GET['id']);
+            $product = new Product();
+            $productDAO = new ProductDAO();
+            $product->setId($_GET['id']);
 
-            $stmt =  $categoryDAO->getId($category);
+            $stmt =  $productDAO->getId($product);
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -90,18 +98,18 @@
                 $product->setCategoria($row['categoria']);
                 $product->setCodigo($row['codigo']);               
     
-                CategoryHelper::showDetails($category);
+                ProductHelper::showDetails($product);
             } 
         }
 
         public function delete() {
-            $category = new Category();
-            $categoryDAO = new CategoryDAO();
-            $category->setId($_GET['id']);
-            $stmt =  $categoryDAO->delete($category);
+            $product = new Product();
+            $productDAO = new ProductDAO();
+            $product->setId($_GET['id']);
+            $stmt =  $productDAO->delete($product);
 
             if($stmt) {
-                header("Location: ?page=category&method=index");
+                header("Location: ?page=product&method=index");
             }
         }
     }
