@@ -1,5 +1,7 @@
 <?php
 
+namespace controller;
+
     class ErroController
     {
         public function index() {
