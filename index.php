@@ -1,5 +1,9 @@
 <?php
-    require_once 'src/controller/HomeController.php';
+
+require 'vendor/autoload.php';
+
+use \controller\HomeController;
+
     require_once 'src/controller/ProductController.php';
     require_once 'src/controller/ErroController.php';
 
