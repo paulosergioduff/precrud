@@ -1,15 +1,21 @@
 <?php
+
+
 class Database
 {
-    private $host = "localhost";
-    private $db_name = "db_product";
-    private $username = "root";
-    private $password = "TR4vcijU6T9Keaw";
+    private $host;
+    private $db_name;
+    private $username;
+    private $password;
     private $conn;
 
     public function getConnection()
     {
-        $this->conn = null;
+        $this->conn = null;       
+        $this->db_name = getenv('DB_NAME');
+        $this->host = getenv('HOST_ENV');
+        $this->username = getenv('USER_ENV');
+        $this->password = getenv('PASS_ENV');
 
         try
         {

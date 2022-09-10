@@ -1,6 +1,9 @@
 <?php
 require 'vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
+$dotenv->load();
+
 use \controller\HomeController;
 use \controller\ErroController;
 use \controller\DependencyApp;
