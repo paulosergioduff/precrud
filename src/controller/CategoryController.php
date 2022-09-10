@@ -1,8 +1,9 @@
 <?php
 
-    require_once 'src/model/DAO/CategoryDAO.php';
-    require_once 'src/model/domain/Category.php';
-    require_once 'src/controller/helpers/CategoryHelper.php';
+use \controller\DependencyApp;
+
+$appDependency = new DependencyApp();
+$appDependency->categoryDependecy();
 
     class CategoryController 
     {

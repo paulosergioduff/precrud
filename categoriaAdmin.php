@@ -3,10 +3,11 @@
 require 'vendor/autoload.php';
 
 use \controller\HomeController;
+use \controller\ErroController;
+use \controller\DependencyApp;
 
-
-    require_once 'src/controller/CategoryController.php';
-    require_once 'src/controller/ErroController.php';
+$appDependency = new DependencyApp();
+$appDependency->controller('CategoryController');
 
     ob_start();
         $app = new HomeController();

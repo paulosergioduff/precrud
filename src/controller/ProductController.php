@@ -1,8 +1,9 @@
 <?php
 
-    require_once 'src/model/DAO/ProductDAO.php';
-    require_once 'src/model/domain/Product.php';
-    require_once 'src/controller/helpers/ProductHelper.php';
+use \controller\DependencyApp;
+
+$appDependency = new DependencyApp();
+$appDependency->productDependecy();
 
     class ProductController 
     {

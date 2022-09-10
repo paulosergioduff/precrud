@@ -1,6 +1,9 @@
 <?php
     
-    require_once 'src/config/connection/Database.php';
+    use \controller\DependencyApp;
+
+    $appDependency = new DependencyApp();
+    $appDependency->configDB('Database');
 
     class CategoryDAO
     {
