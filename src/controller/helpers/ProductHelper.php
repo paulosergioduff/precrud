@@ -68,7 +68,7 @@ class ProductHelper
                 </div>
                 <div class='form-group'>
                     <label for='codigo'>Código de barras</label>
-                    <input class='form-control' id='codigo' name='codigo' type='codigo' value='$codigo'>
+                    <input class='form-control' id='codigo' name='codigo' type='text' value='$codigo'>
                 </div>
                 <br/>                
                 <button type='submit' class='btn btn-success'>Salvar</button> 

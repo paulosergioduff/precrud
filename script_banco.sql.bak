@@ -27,10 +27,10 @@ USE `db_product`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbproduct`
+-- Estrutura da tabela `produtos`
 --
 
-CREATE TABLE `tbproduct` (
+CREATE TABLE `produtos` (
   `id` int(11) NOT NULL,
   `name` varchar(120) NOT NULL,
   `price` double DEFAULT NULL,
@@ -41,10 +41,10 @@ CREATE TABLE `tbproduct` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `tbproduct`
+-- Extraindo dados da tabela `produtos`
 --
 
-INSERT INTO `tbproduct` (`id`, `name`, `price`, `description`, `categoria`, `quantidade`, `codigo`) VALUES
+INSERT INTO `produtos` (`id`, `name`, `price`, `description`, `categoria`, `quantidade`, `codigo`) VALUES
 (18, 'novo comando', 122, 'gsfgsggd', '11', 1, NULL),
 (19, 'First', 99, 'sdfggdgsg', '11', 1, 2147483647);
 
@@ -53,9 +53,9 @@ INSERT INTO `tbproduct` (`id`, `name`, `price`, `description`, `categoria`, `qua
 --
 
 --
--- Indexes for table `tbproduct`
+-- Indexes for table `produtos`
 --
-ALTER TABLE `tbproduct`
+ALTER TABLE `produtos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -63,9 +63,9 @@ ALTER TABLE `tbproduct`
 --
 
 --
--- AUTO_INCREMENT for table `tbproduct`
+-- AUTO_INCREMENT for table `produtos`
 --
-ALTER TABLE `tbproduct`
+ALTER TABLE `produtos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
