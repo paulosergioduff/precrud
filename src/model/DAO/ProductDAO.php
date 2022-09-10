@@ -1,6 +1,10 @@
 <?php
+
+use \controller\DependencyApp;
+
+$appDependency = new DependencyApp();
+$appDependency->configDB('Database');
     
-    require_once 'src/config/connection/Database.php';
 
     class ProductDAO
     {

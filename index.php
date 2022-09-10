@@ -4,9 +4,10 @@ require 'vendor/autoload.php';
 
 use \controller\HomeController;
 use \controller\ErroController;
+use \controller\DependencyApp;
 
-    require_once 'src/controller/ProductController.php';
-    //require_once 'src/controller/ErroController.php';
+$appDependency = new DependencyApp();
+$appDependency->controller('ProductController');
 
     ob_start();
         $app = new HomeController();
