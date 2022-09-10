@@ -1,5 +1,6 @@
 {
 	"require": {
+		"php": "<=7.4.29",
 		"squizlabs/php_codesniffer": "*",
 		"vlucas/phpdotenv": "^5.4"
 	},
