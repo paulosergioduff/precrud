@@ -45,6 +45,19 @@ class ProductHelper
         $codigo = $product->getCodigo();
 
         $form = "
+        <script type=\"text/javascript\">
+            function onlynumber(evt) {
+            var theEvent = evt || window.event;
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode( key );
+            //var regex = /^[0-9.,]+$/;
+            var regex = /^[0-9.]+$/;
+                if( !regex.test(key) ) {
+                    theEvent.returnValue = false;
+                    if(theEvent.preventDefault) theEvent.preventDefault();
+                }
+            }
+        </script>
                 <form action='?page=product&method=update&id=$id' method='post'>
                 <div class='form-group'>
                     <label for='name'>Nome</label>
@@ -68,7 +81,7 @@ class ProductHelper
                 </div>
                 <div class='form-group'>
                     <label for='codigo'>Código de barras</label>
-                    <input class='form-control' id='codigo' name='codigo' type='text' value='$codigo'>
+                    <input class='form-control' id='codigo' name='codigo' type='text' value='$codigo' type='number' pattern='[0-9]+([,\.][0-9]+)?' placeholder=\"Código de barras\"  onkeypress=\"return onlynumber();\">
                 </div>
                 <br/>                
                 <button type='submit' class='btn btn-success'>Salvar</button> 

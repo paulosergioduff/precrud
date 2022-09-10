@@ -37,6 +37,19 @@ class CategoryHelper
         $codigo = $category->getCodigo();
 
         $form = "
+        <script type=\"text/javascript\">
+            function onlynumber(evt) {
+            var theEvent = evt || window.event;
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode( key );
+            //var regex = /^[0-9.,]+$/;
+            var regex = /^[0-9.]+$/;
+                if( !regex.test(key) ) {
+                    theEvent.returnValue = false;
+                    if(theEvent.preventDefault) theEvent.preventDefault();
+                }
+            }
+        </script>
                 <form action='?page=category&method=update&id=$id' method='post'>
                 <div class='form-group'>
                     <label for='name'>Nome</label>
@@ -48,7 +61,7 @@ class CategoryHelper
                 </div>
                 <br/>                
                 <button type='submit' class='btn btn-success'>Salvar</button> 
-                <a href='?page=category' type='button' role='button'>Voltar</a>              
+                <a href='?page=category' type='number' pattern='[0-9]+([,\.][0-9]+)?' placeholder=\"Código de barras\"  onkeypress=\"return onlynumber();\" role='button'>Voltar</a>              
                 </form>
                 
             ";
