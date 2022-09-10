@@ -1,5 +1,7 @@
 {
-	"require": {},
+	"require": {
+		"squizlabs/php_codesniffer": "*"
+	},
 	"autoload": {
 		"psr-4": {"": "src/"}
 	}

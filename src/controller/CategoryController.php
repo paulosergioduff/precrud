@@ -1,101 +1,116 @@
 <?php
-
 use \controller\DependencyApp;
 
 $appDependency = new DependencyApp();
 $appDependency->categoryDependecy();
 
-    class CategoryController 
+class CategoryController
+{
+    public function index()
     {
-        public function index() {
-           
-            $categoryDAO = new CategoryDAO();
-            $stmt = $categoryDAO->getAll();
-            $result = $stmt->rowCount();
-            $category_arr = array();
 
-            if($result > 0) {             
-                while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    extract($row);
+        $categoryDAO = new CategoryDAO();
+        $stmt = $categoryDAO->getAll();
+        $result = $stmt->rowCount();
+        $category_arr = array();
 
-                    $category_item = array(
-                        "id" => $id,
-                        "name" => $name,
-                        "codigo" => $codigo,
-                    );
+        if ($result > 0)
+        {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                extract($row);
 
-                    array_push($category_arr, $category_item);
-                }
-            }
+                $category_item = array(
+                    "id" => $id,
+                    "name" => $name,
+                    "codigo" => $codigo,
+                );
 
-            CategoryHelper::showCategorys($category_arr);
-        }
-
-        public function add() {
-            CategoryHelper::formCategory();
-            $category = new Category();
-
-            if(isset($_POST['name'], $_POST['codigo'])) {
-                $category->setName($_POST['name']);
-                $category->setCodigo($_POST['codigo']);
-
-                if(!empty($category->getName())) {
-                    $categoryDAO = new CategoryDAO();
-                    $stmt = $categoryDAO->insert($category);
-
-                    if($stmt) {
-                       header("Location: ?page=category&method=index");
-                    }
-                } else {
-                    echo "Informe os dados.";
-                }                     
+                array_push($category_arr, $category_item);
             }
         }
 
-        public function update() {            
-            $category = new Category();
-            $category->setId($_GET['id']);
+        CategoryHelper::showCategorys($category_arr);
+    }
 
-            if(isset($_POST['name'], $_POST['codigo'])) {
-                $category->setName($_POST['name']);
-                $category->setCodigo($_POST['codigo']);
-                
+    public function add()
+    {
+        CategoryHelper::formCategory();
+        $category = new Category();
+
+        if (isset($_POST['name'], $_POST['codigo']))
+        {
+            $category->setName($_POST['name']);
+            $category->setCodigo($_POST['codigo']);
+
+            if (!empty($category->getName()))
+            {
                 $categoryDAO = new CategoryDAO();
-                $stmt = $categoryDAO->update($category);
+                $stmt = $categoryDAO->insert($category);
 
-                if($stmt) {
+                if ($stmt)
+                {
                     header("Location: ?page=category&method=index");
                 }
             }
+            else
+            {
+                echo "Informe os dados.";
+            }
         }
+    }
 
-        public function details() {
-            $category = new Category();
+    public function update()
+    {
+        $category = new Category();
+        $category->setId($_GET['id']);
+
+        if (isset($_POST['name'], $_POST['codigo']))
+        {
+            $category->setName($_POST['name']);
+            $category->setCodigo($_POST['codigo']);
+
             $categoryDAO = new CategoryDAO();
-            $category->setId($_GET['id']);
+            $stmt = $categoryDAO->update($category);
 
-            $stmt =  $categoryDAO->getId($category);
-
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if(isset($row['id'])) {
-                $category->setId($row['id']);
-                $category->setName($row['name']);
-                $category->setCodigo($row['codigo']);               
-    
-                CategoryHelper::showDetails($category);
-            } 
-        }
-
-        public function delete() {
-            $category = new Category();
-            $categoryDAO = new CategoryDAO();
-            $category->setId($_GET['id']);
-            $stmt =  $categoryDAO->delete($category);
-
-            if($stmt) {
+            if ($stmt)
+            {
                 header("Location: ?page=category&method=index");
             }
         }
     }
+
+    public function details()
+    {
+        $category = new Category();
+        $categoryDAO = new CategoryDAO();
+        $category->setId($_GET['id']);
+
+        $stmt = $categoryDAO->getId($category);
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (isset($row['id']))
+        {
+            $category->setId($row['id']);
+            $category->setName($row['name']);
+            $category->setCodigo($row['codigo']);
+
+            CategoryHelper::showDetails($category);
+        }
+    }
+
+    public function delete()
+    {
+        $category = new Category();
+        $categoryDAO = new CategoryDAO();
+        $category->setId($_GET['id']);
+        $stmt = $categoryDAO->delete($category);
+
+        if ($stmt)
+        {
+            header("Location: ?page=category&method=index");
+        }
+    }
+}
 ?>

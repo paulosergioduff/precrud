@@ -1,13 +1,13 @@
 <?php
-
-    class ProductHelper
+class ProductHelper
+{
+    public static function showProducts($products)
     {
-        public static function showProducts($products) {
-            $tbody = "";
+        $tbody = "";
 
-            foreach ($products as $product) {
-                $tbody .= 
-                "<tr>
+        foreach ($products as $product)
+        {
+            $tbody .= "<tr>
                     <td>$product[id]</td>
                     <td>$product[name]</td>
                     <td>$product[price]</td>
@@ -19,30 +19,32 @@
                         <a class='btn btn-info' href='?page=product&method=details&id=$product[id]'>Detalhes</a>
                         <a class='btn btn-danger' href='?page=product&method=delete&id=$product[id]'>Excluir</a>
                     </td>
-                </tr>"; 
-            }
-
-            $productView = file_get_contents('src/view/product.html');
-            $productView = str_replace('{{body}}', $tbody, $productView);
-
-            echo $productView;
+                </tr>";
         }
 
-        public static function formProduct() {
-            $productView = file_get_contents('src/view/form.html');
-            echo $productView;
-        }
+        $productView = file_get_contents('src/view/product.html');
+        $productView = str_replace('{{body}}', $tbody, $productView);
 
-        public static function showDetails($product) {
-            $id = $product->getId();
-            $name = $product->getName();
-            $price = $product->getPrice();
-            $description = $product->getDescription();
-            $categoria = $product->getCategoria();
-            $quantidade = $product->getQuantidade();
-            $codigo = $product->getCodigo();
+        echo $productView;
+    }
 
-            $form = "
+    public static function formProduct()
+    {
+        $productView = file_get_contents('src/view/form.html');
+        echo $productView;
+    }
+
+    public static function showDetails($product)
+    {
+        $id = $product->getId();
+        $name = $product->getName();
+        $price = $product->getPrice();
+        $description = $product->getDescription();
+        $categoria = $product->getCategoria();
+        $quantidade = $product->getQuantidade();
+        $codigo = $product->getCodigo();
+
+        $form = "
                 <form action='?page=product&method=update&id=$id' method='post'>
                 <div class='form-group'>
                     <label for='name'>Nome</label>
@@ -75,7 +77,7 @@
                 
             ";
 
-            echo $form;
-        }
+        echo $form;
     }
+}
 ?>

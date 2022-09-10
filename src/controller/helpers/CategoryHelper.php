@@ -1,13 +1,13 @@
 <?php
-
-    class CategoryHelper
+class CategoryHelper
+{
+    public static function showCategorys($categorys)
     {
-        public static function showCategorys($categorys) {
-            $tbody = "";
+        $tbody = "";
 
-            foreach ($categorys as $category) {
-                $tbody .= 
-                "<tr>
+        foreach ($categorys as $category)
+        {
+            $tbody .= "<tr>
                     <td>$category[id]</td>
                     <td>$category[name]</td>
                     <td>$category[codigo]</td>
@@ -15,26 +15,28 @@
                         <a class='btn btn-info' href='?page=category&method=details&id=$category[id]'>Detalhes</a>
                         <a class='btn btn-danger' href='?page=category&method=delete&id=$category[id]'>Excluir</a>
                     </td>
-                </tr>"; 
-            }
-
-            $categoryView = file_get_contents('src/view/listaCategoria.html');
-            $categoryView = str_replace('{{body}}', $tbody, $categoryView);
-
-            echo $categoryView;
+                </tr>";
         }
 
-        public static function formCategory() {
-            $categoryView = file_get_contents('src/view/formCategoria.html');
-            echo $categoryView;
-        }
+        $categoryView = file_get_contents('src/view/listaCategoria.html');
+        $categoryView = str_replace('{{body}}', $tbody, $categoryView);
 
-        public static function showDetails($category) {
-            $id = $category->getId();
-            $name = $category->getName();
-            $codigo = $category->getCodigo();
+        echo $categoryView;
+    }
 
-            $form = "
+    public static function formCategory()
+    {
+        $categoryView = file_get_contents('src/view/formCategoria.html');
+        echo $categoryView;
+    }
+
+    public static function showDetails($category)
+    {
+        $id = $category->getId();
+        $name = $category->getName();
+        $codigo = $category->getCodigo();
+
+        $form = "
                 <form action='?page=category&method=update&id=$id' method='post'>
                 <div class='form-group'>
                     <label for='name'>Nome</label>
@@ -51,7 +53,7 @@
                 
             ";
 
-            echo $form;
-        }
+        echo $form;
     }
+}
 ?>
