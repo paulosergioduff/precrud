@@ -1,9 +1,9 @@
 <?php
-use \controller\DependencyApp;
+
+use controller\DependencyApp;
 
 $appDependency = new DependencyApp();
 $appDependency->productDependecy();
-
 class ProductController
 {
     public function index()
@@ -13,13 +13,9 @@ class ProductController
         $stmt = $productDAO->getAll();
         $result = $stmt->rowCount();
         $product_arr = array();
-
-        if ($result > 0)
-        {
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-            {
+        if ($result > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 extract($row);
-
                 $product_item = array(
                     "id" => $id,
                     "name" => $name,
@@ -29,7 +25,6 @@ class ProductController
                     "categoria" => $categoria,
                     "codigo" => $codigo,
                 );
-
                 array_push($product_arr, $product_item);
             }
         }
@@ -41,28 +36,20 @@ class ProductController
     {
         ProductHelper::formProduct();
         $product = new Product();
-
-        if (isset($_POST['name'], $_POST['price'], $_POST['description'], $_POST['categoria'], $_POST['quantidade']))
-        {
+        if (isset($_POST['name'], $_POST['price'], $_POST['description'], $_POST['categoria'], $_POST['quantidade'])) {
             $product->setName($_POST['name']);
             $product->setPrice($_POST['price']);
             $product->setDescription($_POST['description']);
             $product->setQuantidade($_POST['quantidade']);
             $product->setCategoria($_POST['categoria']);
             $product->setCodigo($_POST['codigo']);
-
-            if (!empty($product->getName()))
-            {
+            if (!empty($product->getName())) {
                 $productDAO = new ProductDAO();
                 $stmt = $productDAO->insert($product);
-
-                if ($stmt)
-                {
+                if ($stmt) {
                     header("Location: ?page=product&method=index");
                 }
-            }
-            else
-            {
+            } else {
                 echo "Informe os dados.";
             }
         }
@@ -72,21 +59,16 @@ class ProductController
     {
         $product = new Product();
         $product->setId($_GET['id']);
-
-        if (isset($_POST['name'], $_POST['price'], $_POST['description'], $_POST['quantidade']))
-        {
+        if (isset($_POST['name'], $_POST['price'], $_POST['description'], $_POST['quantidade'])) {
             $product->setName($_POST['name']);
             $product->setPrice($_POST['price']);
             $product->setDescription($_POST['description']);
             $product->setQuantidade($_POST['quantidade']);
             $product->setCategoria($_POST['categoria']);
             $product->setCodigo($_POST['codigo']);
-
             $productDAO = new ProductDAO();
             $stmt = $productDAO->update($product);
-
-            if ($stmt)
-            {
+            if ($stmt) {
                 header("Location: ?page=product&method=index");
             }
         }
@@ -97,13 +79,9 @@ class ProductController
         $product = new Product();
         $productDAO = new ProductDAO();
         $product->setId($_GET['id']);
-
         $stmt = $productDAO->getId($product);
-
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (isset($row['id']))
-        {
+        if (isset($row['id'])) {
             $product->setId($row['id']);
             $product->setName($row['name']);
             $product->setPrice($row['price']);
@@ -111,7 +89,6 @@ class ProductController
             $product->setQuantidade($row['quantidade']);
             $product->setCategoria($row['categoria']);
             $product->setCodigo($row['codigo']);
-
             ProductHelper::showDetails($product);
         }
     }
@@ -122,11 +99,8 @@ class ProductController
         $productDAO = new ProductDAO();
         $product->setId($_GET['id']);
         $stmt = $productDAO->delete($product);
-
-        if ($stmt)
-        {
+        if ($stmt) {
             header("Location: ?page=product&method=index");
         }
     }
 }
-?>
